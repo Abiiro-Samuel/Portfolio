@@ -1,916 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abiiro Samuel | Professional Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6C63FF;
-            --primary-dark: #554fd8;
-            --secondary: #FF6584;
-            --dark: #121212;
-            --dark-light: #1E1E1E;
-            --light: #F5F5F7;
-            --gray: #8E8E93;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 100px 0;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 25px 0;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            background-color: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .logo i {
-            font-size: 22px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--light);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 160px;
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .hero h1 .highlight {
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero h1 .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background-color: var(--primary);
-            opacity: 0.3;
-            z-index: -1;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: var(--gray);
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: var(--primary);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-        }
-
-        .cta-button:hover {
-            background-color: transparent;
-            color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
-        }
-
-        .hero-shapes {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-        }
-
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary);
-            top: -100px;
-            right: -100px;
-        }
-
-        .shape-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--secondary);
-            bottom: 100px;
-            right: 200px;
-        }
-
-        .shape-3 {
-            width: 200px;
-            height: 200px;
-            background: var(--primary);
-            bottom: -50px;
-            right: 400px;
-        }
-
-        /* About Section */
-        .about {
-            background-color: var(--dark-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-title h2 {
-            font-size: 2.8rem;
-            display: inline-block;
-            position: relative;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .image-wrapper {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .image-wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-
-        .image-wrapper:hover img {
-            transform: scale(1.05);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(108, 99, 255, 0.1));
-            z-index: 1;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .skill-tag {
-            background-color: rgba(108, 99, 255, 0.1);
-            color: var(--primary);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 500;
-            font-size: 14px;
-            border: 1px solid rgba(108, 99, 255, 0.3);
-            transition: var(--transition);
-        }
-
-        .skill-tag:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background-color: var(--dark-light);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-            height: 100%;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-info {
-            padding: 25px;
-        }
-
-        .project-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .project-info p {
-            color: var(--gray);
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .project-tech span {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .project-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .project-link:hover {
-            gap: 12px;
-        }
-
-        /* Contact Section */
-        .contact {
-            background-color: var(--dark-light);
-            text-align: center;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 16px 20px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: var(--light);
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            background-color: rgba(108, 99, 255, 0.05);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0a0a0a;
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background-color: var(--dark-light);
-            color: var(--light);
-            border-radius: 50%;
-            font-size: 20px;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            color: var(--gray);
-            font-size: 14px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-shapes {
-                width: 40%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: var(--dark);
-                flex-direction: column;
-                align-items: center;
-                padding: 30px 0;
-                gap: 25px;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                z-index: 999;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .hero-shapes {
-                display: none;
-            }
-            
-            section {
-                padding: 80px 0;
-            }
-            
-            .hero {
-                padding-top: 140px;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                width: 95%;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>From Zero to Profit | Dropshipping Blueprint Ghana</title>
+  <!-- Google Fonts + Modern CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Swiper CSS (lightweight slider) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F9F9FC;
+      color: #11181C;
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* glassmorphism + modern elements */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(0px);
+      border-radius: 2rem;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #1A3E34;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 2rem;
+      border-radius: 2.5rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+      letter-spacing: -0.2px;
+      gap: 8px;
+      box-shadow: 0 8px 18px -6px rgba(26,62,52,0.25);
+    }
+
+    .btn-primary:hover {
+      background: #0F2E26;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 24px -12px rgba(26,62,52,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #1A3E34;
+      color: #1A3E34;
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: #F0F7F4;
+      transform: translateY(-1px);
+    }
+
+    .btn-large {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* header */
+    .header {
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(249, 249, 252, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 50;
+      border-bottom: 1px solid #EFF1F4;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1A3E34, #2B6E55);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3rem 0;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-content {
+      flex: 1.2;
+    }
+    .badge {
+      display: inline-block;
+      background: #EFF6F3;
+      color: #1A5A48;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      letter-spacing: -0.2px;
+      margin-bottom: 1.5rem;
+      border: 1px solid #DAE9E3;
+    }
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: #0C2A23;
+    }
+    .highlight {
+      background: linear-gradient(120deg, #FDE68A 0%, #FCD34D 80%);
+      background-repeat: no-repeat;
+      background-size: 100% 30%;
+      background-position: bottom;
+      padding: 0 0.2rem;
+    }
+    .hero-description {
+      font-size: 1.2rem;
+      color: #2C4A3E;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+    .checklist {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    .checklist li {
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 500;
+    }
+    .checklist li::before {
+      content: "";
+      background: #1A3E34;
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      display: inline-block;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E") no-repeat center;
+      mask-size: contain;
+      background-color: #1A3E34;
+    }
+
+    /* hero visual */
+    .hero-visual {
+      flex: 0.9;
+      background: linear-gradient(145deg, #FFFFFF, #F4F8F5);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      box-shadow: 0 25px 40px -18px rgba(0,0,0,0.08);
+      border: 1px solid #E8EDE9;
+    }
+    .dashboard-mock {
+      background: #0F1E1A;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      color: white;
+    }
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+    .earning-card {
+      background: #1F3C33;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .cashout-badge {
+      background: #2C6E55;
+      border-radius: 2rem;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 0.8rem;
+    }
+
+    /* section style */
+    .section {
+      padding: 5rem 0;
+      border-bottom: 1px solid #ECF0EE;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+      font-size: 1.1rem;
+      color: #3A5E50;
+    }
+
+    .grid-3 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 2rem 1.8rem;
+      flex: 1 1 260px;
+      transition: all 0.2s;
+      border: 1px solid #ECF2EF;
+      box-shadow: 0 12px 24px -16px rgba(0,0,0,0.04);
+    }
+    .feature-icon {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      background: #F1F8F4;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.2rem;
+    }
+
+    /* company spotlight minimal */
+    .company-spotlight {
+      background: #0F2E26;
+      border-radius: 2rem;
+      padding: 3rem;
+      text-align: center;
+      color: white;
+    }
+
+    /* ========== HERO SLIDER SECTION (Blueprint Steps) ========== */
+    .slider-section {
+      background: linear-gradient(120deg, #FCFAF5 0%, #F5F8F6 100%);
+      padding: 5rem 0;
+    }
+    .slider-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .swiper {
+      padding: 1rem 0.5rem 3rem 0.5rem;
+      overflow: hidden;
+    }
+    .swiper-slide {
+      background: white;
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+      border: 1px solid #E9F0EC;
+      height: auto;
+    }
+    .step-icon-slide {
+      width: 80px;
+      height: 80px;
+      background: #1A3E34;
+      color: white;
+      font-weight: 800;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2rem;
+      margin: 0 auto 1.5rem auto;
+      box-shadow: 0 12px 18px -10px rgba(26,62,52,0.3);
+    }
+    .swiper-slide h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .swiper-slide p {
+      color: #2D4F41;
+      line-height: 1.5;
+      font-size: 1rem;
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: #1A3E34;
+      background: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 60px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    .swiper-pagination-bullet {
+      background: #C4D9D0;
+      opacity: 1;
+    }
+    .swiper-pagination-bullet-active {
+      background: #1A3E34;
+    }
+    @media (max-width: 680px) {
+      .swiper-slide h3 { font-size: 1.5rem; }
+    }
+
+    .price-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.1);
+    }
+    .price {
+      font-size: 3.8rem;
+      font-weight: 800;
+      color: #1A3E34;
+    }
+    .price small {
+      font-size: 1.2rem;
+    }
+    .guarantee {
+      background: #F5F9F7;
+      border-radius: 3rem;
+      padding: 0.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .footer {
+      background: #0A1E18;
+      color: #ADCDC0;
+      text-align: center;
+      padding: 2.5rem 0;
+    }
+
+    @media (max-width: 780px) {
+      h1 { font-size: 2.5rem; }
+      .section-title { font-size: 2rem; }
+      .container { padding: 0 20px; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <i class="fas fa-code"></i>
-                    Samuel<span>.</span>
-                </a>
-                
-                <div class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                
-                <div class="nav-links" id="navLinks">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </nav>
+
+<header class="header">
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="logo">ZERO TO PROFIT</div>
+    <a href="https://selar.com/24m27lj2e4" target="_blank" class="btn-primary" style="padding: 0.6rem 1.6rem;">Get Blueprint →</a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge">GHANA EXCLUSIVE / ZERO INVENTORY MODEL</div>
+        <h1>From <span class="highlight">Zero to Profit</span>: Dropshipping Blueprint for Ghana</h1>
+        <p class="hero-description">I'm not going to lie to you. For a long time, I wanted to make money online but I didn't know where to start. I didn't have capital. No shop. No plan. Then I discovered a Ghanaian supplier that makes dropshipping incredibly easy.</p>
+        <ul class="checklist">
+          <li>No stock. No warehouse. No huge investment.</li>
+          <li>You find the customer, collect money, place order — supplier delivers.</li>
+          <li>Local company provides reseller dashboard + WhatsApp catalog.</li>
+          <li>Cashout directly to Mobile Money from your dashboard.</li>
+        </ul>
+        <a href="https://selar.com/24m27lj2e4" target="_blank" class="btn-primary btn-large">Get The Guide → GHS 49 only</a>
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #5F7C6E;">Instant PDF + video walkthrough • Lifetime updates</p>
+      </div>
+      <div class="hero-visual">
+        <div class="dashboard-mock">
+          <div class="mock-header"><span>Reseller Hub</span><span>Live Dashboard</span></div>
+          <div class="earning-card">
+            <div style="display: flex; justify-content: space-between;"><span>Today’s earnings</span><strong>GHS 1,450</strong></div>
+            <div style="display: flex; justify-content: space-between; margin-top: 8px;"><span>Orders shipped</span><strong>23</strong></div>
+          </div>
+          <div class="cashout-badge">Mobile Money cashout: instant to MTN / Vodafone</div>
+          <div style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.7;">WhatsApp product feed • automated delivery</div>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Python & Flask Developer | Creating <span class="highlight">Digital Experiences</span> That Inspire</h1>
-                <!-- <h1>Creating <span class="highlight">Digital Experiences</span> That Inspire</h1> -->
-                <p>I turn ideas into functional, user-centric web products with clean code and intuitive design.</p>
-                <a href="#projects" class="cta-button">
-                    View My Work
-                    <i class="fas fa-arrow-right"></i>
-                </a>
+  <!-- The Company Advantages (short, powerful) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">The local advantage that changes everything</div>
+      <div class="section-sub">Inside the guide, I give you access to a Ghana-based fulfillment partner that eliminates all dropshipping friction.</div>
+      <div class="grid-3">
+        <div class="feature-card"><div class="feature-icon">GH</div><h3>Ghanaian infrastructure</h3><p>No international shipping. The company operates from Accra & Tema, with nationwide delivery partners.</p></div>
+        <div class="feature-card"><div class="feature-icon">WA</div><h3>WhatsApp channel integration</h3><p>Get a dedicated reseller WhatsApp feed. Share products directly to your customers in seconds.</p></div>
+        <div class="feature-card"><div class="feature-icon">MO</div><h3>Mobile money cashout</h3><p>Your dashboard shows real-time profits. Withdraw to MoMo daily — no bank account required.</p></div>
+        <div class="feature-card"><div class="feature-icon">FK</div><h3>Full logistics handled</h3><p>They pick, pack and deliver. You focus purely on promotion & customer growth.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why the guide matters : reveal the company -->
+  <section class="section" style="background: #F6FAF8;">
+    <div class="container">
+      <div class="company-spotlight">
+        <div style="background: #E67E22; display: inline-block; padding: 0.3rem 1.5rem; border-radius: 2rem; font-weight: 600; margin-bottom: 1.5rem;">INSIDE THE BLUEPRINT</div>
+        <h3 style="font-size: 1.9rem; margin-bottom: 1rem;">The exact Ghanaian company that makes dropshipping effortless</h3>
+        <p style="max-width: 750px; margin: 0 auto; font-size: 1.1rem;">Sign up for their reseller program, get your dashboard, and start listing products from their web catalog or WhatsApp channel. They handle delivery, you handle sales. No upfront inventory, no foreign exchange stress.</p>
+        <a href="https://selar.com/24m27lj2e4" target="_blank" class="btn-primary" style="background: white; color: #0F2E26; margin-top: 2rem; box-shadow: none;">Unlock company details →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HERO SLIDER: FOLLOW THE BLUEPRINT ========== -->
+  <section class="slider-section">
+    <div class="container">
+      <div class="section-title">Follow the blueprint, start earning</div>
+      <div class="section-sub">Your step-by-step journey from zero to first cashout</div>
+      <div class="slider-container">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <div class="step-icon-slide">1</div>
+              <h3>Get the guide</h3>
+              <p>Instant access: PDF + video walkthrough. Contains the verified Ghanaian company name, registration link & dashboard setup.</p>
             </div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <div class="step-icon-slide">2</div>
+              <h3>Activate reseller account</h3>
+              <p>Use the exclusive link inside the guide to sign up. Access the full product catalog & WhatsApp channel.</p>
+            </div>
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+              <div class="step-icon-slide">3</div>
+              <h3>Share & promote</h3>
+              <p>Post products on social media, forward from WhatsApp, or create a simple storefront. They handle the rest.</p>
+            </div>
+            <!-- Slide 4 -->
+            <div class="swiper-slide">
+              <div class="step-icon-slide">4</div>
+              <h3>Cashout profits</h3>
+              <p>Each sale = commission in your dashboard. Withdraw instantly to Mobile Money (MTN / Vodafone Cash).</p>
+            </div>
+          </div>
+          <!-- navigation & pagination -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
-        
-        <div class="hero-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Me</h2>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="image-wrapper">
-                        <div class="image-overlay"></div>
-                        <img src="me.jpeg" alt="Abiiro Samuel">
-                    </div>
-                </div>
-                
-                <div class="about-text">
-                    <p>I’m a Python-focused developer building real-world products with Flask.</p>
-                    <p>I enjoy turning ideas into working systems, especially blogs, SaaS tools, and automation-driven platforms.</p>
-                    <p>I bfreak ideas into features, write clarity documents, build MVPs, test, and improve based on feedback.</p><br>
-                    <h3>TL;DR: I am an innovator, nothing is beyond me.</h3>
-                    <div class="skills">
-                        <div class="skill-tag">Python</div>
-                        <div class="skill-tag">HTML/CSS</div>
-                        <div class="skill-tag">Git & GitHUb</div>
-                        <div class="skill-tag">Content Writing</div>
-                        <div class="skill-tag">PHP</div>
-                        <div class="skill-tag">SEO Analysis & Workout</div>
-                        <div class="skill-tag">AI Tools Usage</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- What the guide actually covers -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">What’s inside your dropshipping blueprint</div>
+      <div class="grid-3">
+        <div class="feature-card"><div class="feature-icon">1.</div><h3>Company profile & link</h3><p>The verified Ghana-based dropship partner, how to register and get approved within hours.</p></div>
+        <div class="feature-card"><div class="feature-icon">2.</div><h3>Product sourcing strategy</h3><p>Top-performing categories in Ghana: electronics, fashion, home essentials & pricing hacks.</p></div>
+        <div class="feature-card"><div class="feature-icon">3.</div><h3>WhatsApp selling system</h3><p>How to use the company’s WhatsApp channel to repost products and convert followers into buyers.</p></div>
+        <div class="feature-card"><div class="feature-icon">4.</div><h3>Dashboard & cashout tutorial</h3><p>Screenshots & video: navigate orders, see earnings, and withdraw to MTN/Vodafone cash.</p></div>
+        <div class="feature-card"><div class="feature-icon">5.</div><h3>Marketing templates</h3><p>Captions, ads, and storytelling for Ghanaian audiences to boost sales.</p></div>
+        <div class="feature-card"><div class="feature-icon">6.</div><h3>Scaling playbook</h3><p>How to build a real reseller brand and automate your promotions.</p></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>Featured Projects</h2>
-            </div>
-            
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="kayl.png" alt="A text to speech web app">
-                    </div>
-                    <div class="project-info">
-                        <h3>Kayl AI</h3>
-                        <p>An authentic sounding text to speech tool that utilizes the "user pays model" available puter AI.</p>
-                        <div class="project-tech">
-                            <span>HTML</span>
-                            <span>Javascript</span>
-                            <span>CSS</span>
-                            <span>Paystack</span>
-                            <span>Puter API</span>
-                        </div>
-                        <a href="https://kayl-ai.vercel.app/" class="project-link">
-                            View Project
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="kobo.png" alt="Kobo Track App">
-                    </div>
-                    <div class="project-info">
-                        <h3>Kobo Track</h3>
-                        <p>A personal financial buddy. Helps with budgeting, expense management, and general monetary evaluations.</p>
-                        <div class="project-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>SQLite</span>
-                            <span>Python Flask</span>
-                        </div>
-                        <a href="https://kobotrack.vercel.app/login?next=%2F" class="project-link">
-                            View Project
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80" alt="Travel App">
-                    </div>
-                    <div class="project-info">
-                        <h3>rankpy (currently offline)</h3>
-                        <p>An SEO tool for analyzing and improving website rankings.</p>
-                        <div class="project-tech">
-                            <span>HTML</span>
-                            <span>Python Flask</span>
-                            <span>CSS</span>
-                            <span>Google Search API</span>
-                        </div>
-                        <a href="#" class="project-link">
-                            View Project
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Social proof: sellers -->
+  <section style="padding: 3rem 0 5rem 0;">
+    <div class="container">
+      <div class="section-title">Trusted by resellers across Ghana</div>
+      <div class="grid-3">
+        <div class="feature-card"><p><strong>“The guide unlocked everything. I never knew a local company like this existed. Made GHS 2,100 in my first 10 days.”</strong></p><p style="margin-top: 1rem;">— Jessica A., Accra</p></div>
+        <div class="feature-card"><p><strong>“Zero stress with shipping or stock. I just forward products from their WhatsApp channel, and the company delivers. Best GHS 49 I've spent.”</strong></p><p style="margin-top: 1rem;">— Michael O., Kumasi</p></div>
+        <div class="feature-card"><p><strong>“The dashboard cashout feature is a lifesaver. I withdraw to MTN MoMo every evening. Highly recommend this blueprint.”</strong></p><p style="margin-top: 1rem;">— Rita N., Tema</p></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-            </div>
-            
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" class="form-control" placeholder="Tell me about your project or idea..." required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        Send Message
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+  <!-- FINAL PURCHASE SECTION (star is the guide) -->
+  <section id="purchase-guide" class="section" style="border-bottom: none;">
+    <div class="container">
+      <div class="price-card">
+        <span style="background: #F0F6F3; padding: 0.3rem 1.2rem; border-radius: 2rem; font-weight: 600;">Complete Dropship System</span>
+        <div class="price">GHS 49 <small>one-time</small></div>
+        <p style="font-size: 1rem; margin: 0.5rem 0;">Instant access • lifetime updates</p>
+        <ul style="list-style: none; margin: 1.5rem 0; text-align: left; padding-left: 1rem;">
+          <li style="margin-bottom: 0.6rem;">✓ Full PDF guide + video walkthrough</li>
+          <li style="margin-bottom: 0.6rem;">✓ The Ghanaian company name & registration link</li>
+          <li style="margin-bottom: 0.6rem;">✓ WhatsApp channel setup and product sourcing</li>
+          <li style="margin-bottom: 0.6rem;">✓ Dashboard & mobile money cashout tutorial</li>
+          <li style="margin-bottom: 0.6rem;">✓ Real profit examples with actual GHS figures</li>
+          <li style="margin-bottom: 0.6rem;">✓ Tools to run your business from your phone</li>
+        </ul>
+        <div class="guarantee">Frequently updated — you get insider dropshipping secrets as they evolve.</div>
+        <a href="https://selar.com/24m27lj2e4" target="_blank" class="btn-primary btn-large" style="width: 100%; margin-top: 0.5rem; text-decoration: none;">Take the single step today → GHS 49</a>
+        <p style="margin-top: 1.2rem; font-size: 0.8rem;">Secure checkout via Selar • PDF delivered instantly</p>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <a href="#" class="logo">
-                    <i class="fas fa-code"></i>
-                    Samuel<span>.</span>
-                </a>
-                
-                <div class="social-links">
-                    <a href="https://github.com/Abiiro-Samuel" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://wa.link/efr4o4" class="social-link">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-                    <a href="https://x.com/py_Miles03" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Abiiro Samuel. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 From Zero to Profit: Dropshipping in Ghana — Built for Ghanaian entrepreneurs. The guide discloses the verified local company partner.</p>
+    <p style="margin-top: 0.75rem; font-size: 0.8rem;">Created by Abiiro Samuel • support@dropshipgh.com</p>
+  </div>
+</footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            menuToggle.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real application, you would send this data to a server
-            // For this demo, we'll just show an alert
-            alert(`Thank you, ${name}! Your message has been sent. I'll get back to you at ${email} as soon as possible.`);
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements to animate
-        document.querySelectorAll('.project-card, .about-text, .about-image').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
-        });
-    </script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Initialize Swiper slider
+  const swiper = new Swiper('.mySwiper', {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints: {
+      640: { slidesPerView: 1 },
+      768: { slidesPerView: 2, spaceBetween: 24 },
+      1024: { slidesPerView: 3, spaceBetween: 28 },
+    },
+    spaceBetween: 24,
+    speed: 700,
+  });
+</script>
 </body>
 </html>
